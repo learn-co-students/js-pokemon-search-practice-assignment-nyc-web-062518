@@ -8,21 +8,24 @@ document.addEventListener("DOMContentLoaded", function() {
       while (pokemonContainer.firstChild) {
           pokemonContainer.removeChild(pokemonContainer.firstChild);
       }
+      // debugger
       if(enteredValue != ""){
         const matchingPokemons = pokemonArray.filter((pokemon) => {
           return pokemon.name.includes(enteredValue)
         })
         console.log(matchingPokemons.length)
 
+        const emptyDiv = document.createElement('div')
+        pokemonContainer.appendChild(emptyDiv)
         matchingPokemons.forEach((pokemon)=>{
-          displayMyShit(pokemon)
+          emptyDiv.appendChild(displayMyShit(pokemon))
         })
       }
   })
 
   function displayMyShit(pokemon){
-    const emptyDiv = document.createElement('div')
-    pokemonContainer.appendChild(emptyDiv)
+    // const emptyDiv = document.createElement('div')
+    // pokemonContainer.appendChild(emptyDiv)
     const singlePokemon = document.createElement('div')
     singlePokemon.className = 'pokemon-container'
 
@@ -38,8 +41,9 @@ document.addEventListener("DOMContentLoaded", function() {
       <p style="padding:10px;" class="center-text flip-image" data-pokename=` + `${pokemon.name}` + `data-action="flip-image">flip card</p>
     </div>
     `
+    return singlePokemon
     // document.querySelector(`#pokemon-container `)
-    emptyDiv.appendChild(singlePokemon)
+    // emptyDiv.appendChild(singlePokemon)
   }
 
   pokemonContainer.addEventListener('click', e => {
